@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 
+//正则表达式替换
 var templateEngine = function(tpl , data) {
     var re = /<%=([^%<>]+)=%>/g;
     while (match = re.exec(tpl)) {
@@ -26,8 +27,9 @@ try {
 	process.exit(1);
 }
 
-var showdown  = require('showdown');
-	require('./showdown-prettify.js');
+	require('./lib/showdown-prettify.js');
+var showdown  = require('./lib/showdown.js');
+	
 var markdownConverter = new showdown.Converter({extensions: ['prettify']});
 
 markdownConverter.setOption('tables', true);
@@ -56,11 +58,13 @@ var path = require('path');
 
 var template_file = path.resolve(__dirname,'template2.html');
 var template = fs.readFileSync(template_file, "utf-8");
+
 //console.log(template);
 //const $ = cheerio.load(template,{decodeEntities: false})
-var html = markdownConverter.makeHtml(md_file);
-//$('#markdown-container').html(html);
 
+var html = markdownConverter.makeHtml(md_file);
+
+//$('#markdown-container').html(html);
 //console.log($.html());
 
 function writeToStdOut (html) {

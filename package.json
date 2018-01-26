@@ -8,9 +8,5 @@
   "bin": {
     "markdown2html": "bin/markdown2html.js",
     "md2html": "bin/markdown2html.js"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "showdown": "^1.8.6"
   }
 }
