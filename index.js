@@ -1,8 +1,18 @@
 #!/usr/bin/env node
 
+
+var templateEngine = function(tpl , data) {
+    var re = /<%=([^%<>]+)=%>/g;
+    while (match = re.exec(tpl)) {
+        //console.log( match );
+        tpl = tpl.replace( match[0] , data[match[1]] );
+    }
+   return tpl;
+}
+
 var fs = require('fs');
-var cheerio = require('cheerio');
-var args = process.argv.splice(2)
+//var cheerio = require('cheerio');
+var args = process.argv.splice(2);
 //console.log('所传递的参数是：', args);
 if(args.length == 0){
 	console.error('use markdown2html some-markdwon.md > xxxx.html');
@@ -44,12 +54,12 @@ markdownConverter.setOption('completeHTMLDocument', false);
 
 var path = require('path');
 
-var template_file = path.resolve(__dirname,'template.html');
+var template_file = path.resolve(__dirname,'template2.html');
 var template = fs.readFileSync(template_file, "utf-8");
 //console.log(template);
-const $ = cheerio.load(template,{decodeEntities: false})
+//const $ = cheerio.load(template,{decodeEntities: false})
 var html = markdownConverter.makeHtml(md_file);
-$('#markdown-container').html(html);
+//$('#markdown-container').html(html);
 
 //console.log($.html());
 
@@ -57,7 +67,13 @@ function writeToStdOut (html) {
     return process.stdout.write(html);
 }
 
-writeToStdOut($.html());
+var data = {
+    markdown_content : html
+};  
+
+//writeToStdOut($.html());
+writeToStdOut(templateEngine(template,data));
+
 
 
 
