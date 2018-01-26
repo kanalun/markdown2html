@@ -11,6 +11,10 @@ var templateEngine = function(tpl , data) {
    return tpl;
 }
 
+function writeToStdOut (html) {
+    return process.stdout.write(html);
+}
+
 var fs = require('fs');
 //var cheerio = require('cheerio');
 var args = process.argv.splice(2);
@@ -69,9 +73,7 @@ var html = markdownConverter.makeHtml(md_file);
 //$('#markdown-container').html(html);
 //console.log($.html());
 
-function writeToStdOut (html) {
-    return process.stdout.write(html);
-}
+
 
 var data = {
     markdown_content : html
