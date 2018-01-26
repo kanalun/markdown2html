@@ -45,12 +45,14 @@ markdownConverter.setOption('openLinksInNewWindow', true);
 
 markdownConverter.setOption('emoji', true);
 markdownConverter.setOption('underline', true);
-markdownConverter.setOption('metadata', true);
+
 markdownConverter.setOption('splitAdjacentBlockquotes', true);
 markdownConverter.setOption('customizedHeaderId', true);
 
 markdownConverter.setOption('parseImgDimensions', true);
 markdownConverter.setOption('headerLevelStart', 1);
+
+markdownConverter.setOption('metadata', true);
 markdownConverter.setOption('completeHTMLDocument', false);
 
 
